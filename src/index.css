@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: all 300ms ease-in-out;
+}
+
+
+
+@layer base {
+ body {
+  @apply bg-gray font-primary text-base leading-relaxed
+ }
+
+
+
+ .title {
+  @apply text-6xl font-secondary capitalize text-primary mb-3
+ }
+
+ .subtitle {
+  @apply text-[4rem] mb-3
+ }
+
+ img {
+  @apply w-full
+ }
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
