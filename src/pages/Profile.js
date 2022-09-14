@@ -96,7 +96,7 @@ const Profile = () => {
   return (
     <div className="">
       <div className="h-screen pt-">
-        <header className="profile text-white pt-36 pb-4 text-2xl px-4">
+        <header className="profile text-white pt-36 pb- text-2xl px-4">
           <p className="font-bold text-primary">Welcome {name}</p>
           <p>{email}</p>
         </header>
