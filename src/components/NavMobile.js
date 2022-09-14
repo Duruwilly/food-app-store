@@ -1,8 +1,10 @@
 import React from "react";
 import { Menu } from "./Navmenu";
 import { Link } from 'react-router-dom'
+import { useStateContext } from "../context/ContextWrapper";
 
-const NavMobile = ({ toggle }) => {
+const NavMobile = () => {
+  const { toggle } = useStateContext()
   return (
     <nav className="bg-white shadow-2xl w-full h-full">
       <ul className="text-cente h-full flex flex-col items-cente justify-cnter gap-y-16 py-32 px-16">

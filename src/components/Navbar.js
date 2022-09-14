@@ -6,13 +6,13 @@ import { BsHeartFill } from 'react-icons/bs'
 import { Menu } from "./Navmenu";
 import { Link, useLocation } from 'react-router-dom'
 import NavMobile from "./NavMobile";
+import { useStateContext } from "../context/ContextWrapper";
 
 
 const Navbar = () => {
+  const { mobileNav, toggle } = useStateContext()
   const location = useLocation()
-
   const [bg, setBg] = useState(false);
-  const [mobileNav, setMobileNav] = useState(false);
   useEffect(() => {
     // add event listener
     window.addEventListener("scroll", () => {
@@ -20,18 +20,6 @@ const Navbar = () => {
       window.scrollY > 50 ? setBg(true) : setBg(false);
     });
   });
-
-  const toggle = () => {
-    setMobileNav(!mobileNav)
-  }
-
-  const scroll = () => {
-    if (window.scrollY >= 30) {
-      setMobileNav(false)
-    }
-  }
-
-  window.addEventListener('scroll', scroll)
 
   useEffect(() => {
     if (window.location.pathname === "/login") {
@@ -54,8 +42,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center justify-center">
-            <img className="h-12 lg:h-12" src={Logo} alt="logo" />
+          <Link to="/" className="">
             <span className="logo">
               L<span className="text-primary">foods</span>
             </span>
@@ -95,7 +82,7 @@ const Navbar = () => {
               mobileNav ? "left-0" : "-left-full"
             } lg:hidden fixed bottom-0 w-2/4 h-screen transition-all`}
           >
-            <NavMobile toggle={toggle} />
+            <NavMobile />
           </div>
         </div>
       </div>

@@ -13,24 +13,12 @@ export const Menu = [
     name: "home",
   },
   {
-    path: "/",
-    name: "about",
-  },
-  {
     path: "/menu",
     name: "menu",
   },
   {
-    path: "/",
-    name: "review",
-  },
-  {
     path: "/order",
     name: "order",
-  },
-  {
-    path: "/",
-    name: "contact",
   },
   {
     path: "/profile",
@@ -94,6 +82,12 @@ export const Reviews = [
   id: 4,
   name: 'miracle smith',
   src: customer4,
+  note: 'After my first experience with them, all i can say is that they are at the top of their game'
+ },
+ {
+  id: 5,
+  name: 'miracle smith',
+  src: customer5,
   note: 'After my first experience with them, all i can say is that they are at the top of their game'
  },
 ]
