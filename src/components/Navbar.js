@@ -38,10 +38,10 @@ const Navbar = () => {
   return (
     <header
       className={`${bg ? "bg-nav py-4 lg:py-6" : "bg-none"}
-      fixed left-0 py-8 z-10 w-full transition-all duration-200`}
+      fixed left-0 top-0 right-0 py-8 z-10 w-full transition-all duration-200`}
     >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center w-full">
           <Link to="/" className="">
             <span className="logo">
               L<span className="text-primary">foods</span>
@@ -62,17 +62,17 @@ const Navbar = () => {
               })}
             </ul>
           </nav>
-          <div className="flex gap-x-8 items-center justify-center text-white">
+          <div className="grid grid-cols-3 gap-x-10 items-center justify-center text-white">
             <div
               onClick={toggle}
-              className="lg:hidden text-3xl text-white cursor-pointer hover:rotate-[360deg] hover:bg-primary rounded-full p-3"
+              className="lg:hidden text-4xl md:text-3xl text-white cursor-pointer hover:rotate-[360deg] hover:bg-primary rounded-full p-3"
             >
               {mobileNav ? <CgClose /> : <CgMenuRight />}
             </div>
-            <div className="text-3xl p-3 rounded-full hover:bg-primary text-center hover:rotate-[360deg]">
+            <div className="text-4xl md:text-3xl p-3 rounded-full hover:bg-primary text-center hover:rotate-[360deg]">
               <FaShoppingCart />
             </div>
-            <div className="text-3xl p-3 rounded-full hover:bg-primary text-center hover:rotate-[360deg]">
+            <div className="text-4xl md:text-3xl p-3 rounded-full hover:bg-primary text-center hover:rotate-[360deg]">
               <BsHeartFill />
             </div>
           </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
           <div
             className={`${
               mobileNav ? "left-0" : "-left-full"
-            } lg:hidden fixed bottom-0 w-2/4 h-screen transition-all`}
+            } lg:hidden fixed bottom-0 top-0 w-2/4 h-screen transition-all`}
           >
             <NavMobile />
           </div>
