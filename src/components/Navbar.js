@@ -4,41 +4,28 @@ import { CgMenuRight, CgClose } from "react-icons/cg";
 import { FaShoppingCart } from 'react-icons/fa'
 import { BsHeartFill } from 'react-icons/bs'
 import { Menu } from "./Navmenu";
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import NavMobile from "./NavMobile";
-import { useStateContext } from "../context/ContextWrapper";
-
 
 const Navbar = () => {
-  const { mobileNav, toggle } = useStateContext()
-  const location = useLocation()
-  const [bg, setBg] = useState(false);
-  useEffect(() => {
-    // add event listener
-    window.addEventListener("scroll", () => {
-      // when scrollY is bigger than 50px setBg to true, else false
-      window.scrollY > 50 ? setBg(true) : setBg(false);
-    });
-  });
+  const [mobileNav, setMobileNav] = useState(false);
 
-  useEffect(() => {
-    if (window.location.pathname === "/login") {
-      setBg(!false);
-    } else if (window.location.pathname === "/register") {
-      setBg(true);
-    } else if (window.location.pathname === "/profile") {
-      setBg(true);
-    } else if (window.location.pathname === "/") {
-      setBg(false);
+  const toggle = () => {
+    setMobileNav(!mobileNav);
+  };
+
+  const scroll = () => {
+    if (window.scrollY >= 30) {
+      setMobileNav(false);
     }
-    
-  }, [location])
-  
+  };
+
+  window.addEventListener("scroll", scroll);
 
   return (
     <header
-      className={`${bg ? "bg-nav py-4 lg:py-6" : "bg-none"}
-      fixed left-0 top-0 right-0 py-8 z-10 w-full transition-all duration-200`}
+      className="bg-nav lg:py-6
+      fixed left-0 top-0 right-0 py-8 z-10 w-full transition-all duration-200"
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center w-full">
@@ -82,7 +69,7 @@ const Navbar = () => {
               mobileNav ? "left-0" : "-left-full"
             } lg:hidden fixed bottom-0 top-0 w-2/4 h-screen transition-all`}
           >
-            <NavMobile />
+            <NavMobile toggle={toggle} />
           </div>
         </div>
       </div>

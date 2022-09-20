@@ -10,20 +10,24 @@ import {
 } from "firebase/auth";
 import {setDoc, doc, serverTimestamp} from 'firebase/firestore'
 import { InputButton } from '../components/Button';
+import { useDispatch } from "react-redux";
+import { registerSucess } from "../redux/userSlice";
 
 const Register = () => {
   const inputStyle =
     "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl focus:border-input-border";
 
+    const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    userName: "",
     email: "",
     mobileNumber: "",
     password: "",
   });
 
-  const { name, email, mobileNumber, password } = formData;
+  const { userName, email, mobileNumber, password } = formData;
 
   const navigate = useNavigate();
 
@@ -40,6 +44,7 @@ const Register = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    dispatch(registerSucess({ userName, email, mobileNumber }));
     try {
       // getting this value from getAuth
       const auth = getAuth();
@@ -56,7 +61,7 @@ const Register = () => {
 
       // updating the display name
       updateProfile(auth.currentUser, {
-        displayName: name,
+        displayName: userName,
       });
 
       const formDataCopy = { ...formData };
@@ -85,7 +90,7 @@ const Register = () => {
                 placeholder="Full Name"
                 id="name"
                 name="name"
-                value={name}
+                value={userName}
                 className={inputStyle}
                 onChange={onChange}
               />
@@ -147,9 +152,6 @@ const Register = () => {
               >
                 Sign in
               </Link>
-            </p>
-            <p className="text-center text-2xl">
-              By continuing you agree to the Policy and Rules of Willtta
             </p>
           </div>
         </div>

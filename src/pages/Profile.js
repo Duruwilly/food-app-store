@@ -5,6 +5,8 @@ import { db } from "../firebase.config";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { FaPen } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { registerSucess } from "../redux/userSlice";
 
 const Profile = () => {
   const profileName =
@@ -14,17 +16,19 @@ const Profile = () => {
 
   const auth = getAuth();
 
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState({
-    userName: "",
+    name: "",
     userNumber: "",
   });
 
   const textref = useRef(null);
   const [changeDetails, setChangeDetails] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    userName: "",
     email: "",
-    number: "",
+    mobileNumber: "",
   });
 
   const navigate = useNavigate();
@@ -41,37 +45,38 @@ const Profile = () => {
       const userProfile = docSnap.data();
       setUser((prevState) => ({
         ...prevState,
-        userName: userProfile.name,
+        name: userProfile.userName,
         userNumber: userProfile.mobileNumber,
       }));
       setFormData((prevState) => ({
         ...prevState,
-        name: userProfile.name,
+        userName: userProfile.userName,
         email: userProfile.email,
-        number: userProfile.mobileNumber,
+        mobileNumber: userProfile.mobileNumber,
       }));
     };
     fetchUserDetails();
   }, [auth.currentUser.uid]);
 
-  const { userName, userNumber } = user;
+  const { name, userNumber } = user;
   const onSubmit = async () => {
     try {
-      if (name !== userName || number !== userNumber) {
+      if (userName !== name || mobileNumber !== userNumber) {
         //update display name in fb
         await updateProfile(auth.currentUser, {
-          displayName: name,
-          mobileNumber: number,
+          displayName: userName,
+          mobileNumber: mobileNumber,
         });
-      } else if (name === userName && number === userNumber) {
+        dispatch(registerSucess({ ...formData }));
+      } else if (userName === name && mobileNumber === userNumber) {
         toast.error("No changes was made", { toastId: "6yfvyuwevyufgvwefyuv" });
         return;
       }
       // update in firestore
       const userRef = doc(db, "users", auth.currentUser.uid);
       await updateDoc(userRef, {
-        name: name,
-        mobileNumber: number,
+        userName: userName,
+        mobileNumber: mobileNumber,
       });
       toast.success("Profile updated", { toastId: "6yfvyuwevyufgvwefyuv" });
     } catch (error) {
@@ -91,13 +96,13 @@ const Profile = () => {
       [e.target.id]: e.target.value,
     }));
   };
-  const { name, email, number } = formData;
+  const { userName, email, mobileNumber } = formData;
 
   return (
     <div className="">
       <div className="h-screen pt-">
-        <header className="profile text-white pt-36 pb- text-2xl px-4">
-          <p className="font-bold text-primary">Welcome {name}</p>
+        <header className="profile text-white pt-36 pb-4 text-2xl px-4">
+          <p className="font-bold text-primary">Welcome {userName}</p>
           <p>{email}</p>
         </header>
 
@@ -121,7 +126,7 @@ const Profile = () => {
                     id="name"
                     className={!changeDetails ? profileName : profileNameActive}
                     disabled={!changeDetails}
-                    value={name}
+                    value={userName}
                     onChange={onChange}
                     ref={textref}
                   />
@@ -146,7 +151,7 @@ const Profile = () => {
                     className={!changeDetails ? profileName : profileNameActive}
                     disabled={!changeDetails}
                     autoFocus={changeDetails}
-                    value={number}
+                    value={mobileNumber}
                     onChange={onChange}
                   />
                   {changeDetails && (
