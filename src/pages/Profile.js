@@ -123,7 +123,7 @@ const Profile = () => {
                 <div className="flex">
                   <input
                     type="text"
-                    id="name"
+                    id="userName"
                     className={!changeDetails ? profileName : profileNameActive}
                     disabled={!changeDetails}
                     value={userName}
@@ -147,7 +147,7 @@ const Profile = () => {
                 <div className="flex ">
                   <input
                     type="tel"
-                    id="number"
+                    id="mobileNumber"
                     className={!changeDetails ? profileName : profileNameActive}
                     disabled={!changeDetails}
                     autoFocus={changeDetails}

@@ -88,8 +88,8 @@ const Register = () => {
               <input
                 type="name"
                 placeholder="Full Name"
-                id="name"
-                name="name"
+                id="userName"
+                name="userName"
                 value={userName}
                 className={inputStyle}
                 onChange={onChange}
