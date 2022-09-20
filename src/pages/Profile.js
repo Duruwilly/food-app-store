@@ -164,7 +164,7 @@ const Profile = () => {
             </div>
             <div className="flex items-center justify-center">
               <div className="max-w-xl w-full px-4 flex border-t border-gray-200 mt-10">
-                <div className="border-b-4 w-full border-b-black text-center bg-black py-1 font-semibold  text-3xl text-primary cursor-pointer hover:bg-primary hover:text-white">
+                <div className="border-b-4 w-full border-b-black text-center bg-black py-2 font-semibold  text-3xl text-primary cursor-pointer hover:bg-primary hover:text-white">
                   <p
                     className=""
                     onClick={() => {
@@ -175,7 +175,7 @@ const Profile = () => {
                     {changeDetails ? "done" : "edit details"}
                   </p>
                 </div>
-                <div className="bg-red-800 w-full text-gray-200 text-center py-1 font-semibold text-3xl cursor-pointer">
+                <div className="bg-red-800 w-full text-gray-200 text-center py-2 font-semibold text-3xl cursor-pointer">
                   <button type="button" onClick={onLogout}>
                     Logout
                   </button>
