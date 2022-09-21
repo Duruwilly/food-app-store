@@ -30,8 +30,13 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
+section, .cart-padding {
   padding: 2rem 9%;
+}
+
+
+.transition {
+  transition: all 800ms ease-in-out;
 }
 
 /* section:nth-child(even) {
@@ -186,6 +191,8 @@ header .logo {
   height: 30rem;
   width: 36rem;
 }
+
+
 
 .box-container {
   display: grid;
@@ -631,7 +638,7 @@ header .logo {
     padding: 1rem 2rem;
   } */
 
-  section {
+  section, .cart-padding {
     padding: 2rem;
   }
 }

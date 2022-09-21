@@ -15,7 +15,7 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import FavouriteItem from "../components/FavouriteItem";
 import Title from "../components/Title";
-const FavouriteList = () => {
+const Favourite = () => {
   const [favouriteList, setFavouriteList] = useState([]);
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
@@ -113,4 +113,4 @@ const FavouriteList = () => {
   );
 }
 
-export default FavouriteList;
+export default Favourite;

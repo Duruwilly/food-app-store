@@ -9,7 +9,8 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import PrivateRoute from './components/PrivateRoute';
-import FavouriteList from './pages/FavouriteList';
+import Favourite from './pages/Favourite';
+import Cart from './pages/Cart';
 import Menu from './pages/Menu';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/favourites" element={<FavouriteList />} />
+          <Route path="/favourites" element={<Favourite />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
