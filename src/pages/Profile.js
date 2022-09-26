@@ -113,7 +113,7 @@ const Profile = () => {
               <Link to="/orders">Orders</Link>
             </p>
             <p>
-              <Link to="/favourites">Favourites</Link>
+              <Link to="/wishlists">Favourites</Link>
             </p>
           </div>
           <div>

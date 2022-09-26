@@ -13,16 +13,21 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
-import FavouriteItem from "../components/FavouriteItem";
+import SavedItem from "../components/SavedItem";
 import Title from "../components/Title";
-const Favourite = () => {
+import { useSelector } from "react-redux";
+import { addItem } from "../redux/cartSlice";
+
+const SavedList = () => {
+  const savedItems = useSelector((state) => state.save.savedItems);
+
   const [favouriteList, setFavouriteList] = useState([]);
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
   const navigate = useNavigate();
   const isMounted = useRef(true);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchFavouriteList = async () => {
       try {
         const docRef = collection(db, "favourites");
@@ -66,9 +71,9 @@ const Favourite = () => {
       isMounted.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMounted]);
+  }, [isMounted]); */
 
-  const deleteFavourite = async (favouriteId) => {
+  /* const deleteFavourite = async (favouriteId) => {
     try {
       await deleteDoc(doc(db, "favourites", favouriteId));
       const updatedFavouriteList = favouriteList.filter(
@@ -80,32 +85,33 @@ const Favourite = () => {
       console.log(error);
       toast.error("error", { toastId: "#@#433szxdz#@23" });
     }
-  };
+  }; */
+
 
   return (
     <div className="">
-      {favouriteList?.length !== 0 ? (
-        <section className="mt-44 pb-24">
-          <main className="text-gray-600 body-font">
-            <div className="px-4 mx-auto">
-              <Title title='your favourite' />
-              <ul className="overflow-x-auto">
-                {favouriteList?.map((listing) => (
-                  <FavouriteItem
-                    listing={listing.data}
-                    id={listing.id}
-                    key={listing.id}
-                    handleDelete={deleteFavourite}
-                  />
-                ))}
-              </ul>
-            </div>
-          </main>
+      <header className="profile text-white pt-40 pb-4 text-center text-4xl px-4">
+        <p className="font-bold">Saved Items</p>
+      </header>
+      {savedItems?.length !== 0 ? (
+        <section className=" pb-24">
+              <main className="cart-padding">
+                <div className="box-container">
+                  {savedItems?.map((saved) => (
+                    <div className="group relative" key={saved.id}>
+                      <SavedItem
+                        {...saved}
+                        imgUrls={saved.imgUrls}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </main>
         </section>
       ) : (
         <div className="flex justify-center align-center mt-24">
           <h1 className="font-medium title-font mb-2 text-gray-900">
-            You Have no favourite items
+            You Have no saved items
           </h1>
         </div>
       )}
@@ -113,4 +119,4 @@ const Favourite = () => {
   );
 }
 
-export default Favourite;
+export default SavedList;

@@ -9,7 +9,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import PrivateRoute from './components/PrivateRoute';
-import Favourite from './pages/Favourite';
+import SavedList from './pages/SavedList';
 import Cart from './pages/Cart';
 import Menu from './pages/Menu';
 
@@ -23,7 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/favourites" element={<Favourite />} />
+          <Route path="/wishlists" element={<SavedList />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<PrivateRoute />}>

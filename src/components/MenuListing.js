@@ -8,17 +8,12 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from "../redux/cartSlice";
 import { fetchData, sendCartData } from '../redux/cartDb';
+import { savedItem } from '../redux/savedSlice';
 
 const MenuListing = ({menu, id}) => {
   const cart = useSelector((state) => state.cart);
   const auth = getAuth();
   const dispatch = useDispatch();
-
-  /* const cartItem = {
-      ...cart,
-      cartRef: auth.currentUser.uid,
-      timestamp: serverTimestamp(),
-    }; */
 
    useEffect(() => {
       sendCartData(cart)
@@ -29,9 +24,21 @@ const MenuListing = ({menu, id}) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(addItem({...menu, id}))
-        toast.success("Item added to cart", { toastId: "r34-xAcu9#@(*" });
+        toast.success("Item added to cart");
       } else if (!user) {
-        toast.info("Please signup or log in", { toastId: "r34-xAcu9#@(*" });
+        toast.info("Please signup or log in")
+        return;
+      }
+    });
+  };
+
+  const addToLike = async () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(savedItem({...menu, id}))
+        toast.success("Item added to your wishlist");
+      } else if (!user) {
+        toast.info("Please signup or log in");
         return;
       }
     });
@@ -56,7 +63,7 @@ const MenuListing = ({menu, id}) => {
         <div className="images">
           <img src={menu.imgUrls} alt="" className="shop-item-image" />
           <div className="faHeart">
-            <button className="heart-btn" >
+            <button className="heart-btn" onClick={addToLike}>
               <BsHeartFill />
             </button>
           </div>
