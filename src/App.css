@@ -280,6 +280,25 @@ header .logo {
 }
 
 /* cart modal start */
+
+.amount-container {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-amount {
+  color: white;
+  margin-bottom: 0;
+  font-size: 2rem;
+}
 .modal {
   display: none;
   position: fixed;

@@ -1,33 +1,43 @@
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
-import { BsFillTelephoneFill } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
+import { decrementItem, incrementItem, removeItem } from '../redux/cartSlice'
 
-const CartItem = ({ cart, id, handleDelete}) => {
+const CartItem = ({ name, price, quantity, img, id }) => {
+
+  const dispatch = useDispatch()
+
   return (
     <div key={id}>
       <div className="box">
         <div className="p-6">
           <div className="flex justify-center items-center">
             <div className="flex-[2] imag">
-              <img
-                src={cart.imgUrls}
-                alt={cart.name}
-                className="cart-item-image"
-              />
+              <img src={img} alt={name} className="cart-item-image" />
             </div>
             <div className="flex-[2]">
-              <p className="text-2xl">{cart.name}</p>
+              <p className="text-2xl">{name}</p>
               <span className="font-bold text-4xl mt-3">
-                ₦{[cart.price].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ₦{[price].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
             </div>
             <div className="flex-[2]">
               <div className="flex justify-center items-center gap-7">
-                <button className="bg-primary h-16 w-16 inline-flex text-white justify-center items-center text-6xl border-none outline-none rounded-lg">
+                <button
+                  className="bg-primary h-16 w-16 inline-flex text-white justify-center items-center text-6xl border-none outline-none rounded-lg"
+                  onClick={() => {
+                    dispatch(decrementItem({ id }));
+                  }} disabled={quantity === 1}
+                >
                   -
                 </button>
-                <p className="text-3xl">1</p>
-                <button className="text-5xl bg-primary text-white h-16 w-16 inline-flex justify-center items-center border-none outline-none rounded-lg">
+                <p className="text-3xl">{quantity}</p>
+                <button
+                  className="text-5xl bg-primary text-white h-16 w-16 inline-flex justify-center items-center border-none outline-none rounded-lg"
+                  onClick={() => {
+                    dispatch(incrementItem({ id }));
+                  }}
+                >
                   +
                 </button>
               </div>
@@ -36,14 +46,13 @@ const CartItem = ({ cart, id, handleDelete}) => {
           <div className="mt-6 text-4xl">
             <span
               className="flex items-center justify-center gap-4 cursor-pointer text-primary"
-              onClick={() => handleDelete(id)}
+              onClick={() => {dispatch(removeItem(id))}}
             >
               <FaTrash /> <span className="uppercase">remove</span>
             </span>
           </div>
         </div>
       </div>
-      
     </div>
   );
 }

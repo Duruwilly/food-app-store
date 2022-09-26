@@ -1,23 +1,70 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
- cartItems: [],
- amount: 0,
- total: 0,
- isLoading: true,
-}
+
 
 const cartSlice = createSlice({
- name: 'cart',
- initialState,
- reducers: {
-  addItem: (state, action) => {
-   state.cartItems = action.payload;
-  }
- }
-})
+  name: "cart",
+  initialState: {
+   cartItems: [],
+ totalAmount: 0,
+ total: 0,
+ totalQuantity: 0,
+ isLoading: true,
+ changed: false,
+  },
+  reducers: {
+    addItem(state, action) {
+     state.changed = true
+      const newItem = action.payload;
+      console.log(newItem);
+      // to check if item is already available
+      const existingItem = state.cartItems.find(
+        (item) => item.id === newItem.id
+      );
 
+      if (existingItem) {
+        existingItem.quantity++;
+        existingItem.totalPrice += newItem.price;
+      } else {
+        state.cartItems.push({
+          id: newItem.id,
+          price: newItem.price,
+          quantity: 1,
+          totalPrice: newItem.price,
+          name: newItem.name,
+          imgUrls: newItem.imgUrls,
+          userRef: newItem.userRef,
+          timestamp: newItem.timestamp,
+        });
+        state.totalQuantity++;
+      }
+    },
+    removeItem(state, action) {
+     state.changed = true
+     const itemId = action.payload;
+     const cartItem = state.cartItems.find((item) => item.id === itemId);
+      if(cartItem) {
+       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+       state.totalQuantity--
+      }
+    },
+    incrementItem(state, { payload }) {
+      const cartItem = state.cartItems.find((item) => item.id === payload.id);
+      cartItem.quantity = cartItem.quantity + 1;
+    },
+    decrementItem(state, { payload }) {
+      const cartItem = state.cartItems.find((item) => item.id === payload.id);
+       cartItem.quantity = cartItem.quantity - 1;
+    },
+    totalPrice(state) {
+     let total = 0;
+     state.cartItems.forEach((item) => {
+      total += item.quantity * item.totalPrice;
+     })
+     state.totalAmount = total
+    }
+  },
+});
 
-
-export const { addItem } = cartSlice.actions
+export const { addItem, removeItem, incrementItem, decrementItem, replaceData } = cartSlice.actions
 export default cartSlice.reducer

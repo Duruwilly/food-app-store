@@ -1,62 +1,54 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { BsHeartFill, BsFillStarFill, BsStarHalf } from 'react-icons/bs'
 import { Button } from './Button'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from "../redux/cartSlice";
+import { fetchData, sendCartData } from '../redux/cartDb';
 
 const MenuListing = ({menu, id}) => {
+  const cart = useSelector((state) => state.cart);
   const auth = getAuth();
-  const addToFavourite = async (favourite) => {
+  const dispatch = useDispatch();
+
+  /* const cartItem = {
+      ...cart,
+      cartRef: auth.currentUser.uid,
+      timestamp: serverTimestamp(),
+    }; */
+
+   useEffect(() => {
+      sendCartData(cart)
+  }, [cart])
+
+  
+  const addToCart = async () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        addItem();
-        toast.success("Item added to favourite", { toastId: "r34-xAcu9#@(*" });
-      } else if (!user) {
-        toast.info("Please signup or log in", { toastId: "r34-xAcu9#@(*" });
-        return;
-      }
-    });
-    const addItem = async () => {
-      const favouriteItem = {
-        ...menu,
-        favouriteRef: auth.currentUser.uid,
-        timestamp: serverTimestamp(),
-      };
-
-      try {
-        await addDoc(collection(db, "favourites"), favouriteItem);
-      } catch (error) {
-        toast.error("An error occured");
-      }
-    };
-  };
-
-  const addToCart = async (cart) => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        addItemToCart();
+        dispatch(addItem({...menu, id}))
         toast.success("Item added to cart", { toastId: "r34-xAcu9#@(*" });
       } else if (!user) {
         toast.info("Please signup or log in", { toastId: "r34-xAcu9#@(*" });
         return;
       }
     });
-    const addItemToCart = async () => {
-      const cartItem = {
-        ...menu,
-        cartRef: auth.currentUser.uid,
-        timestamp: serverTimestamp(),
-      };
-
-      try {
-        await addDoc(collection(db, "carts"), cartItem);
-      } catch (error) {
-        toast.error("An error occured");
-      }
-    };
   };
+
+  /* const addCart = async () => {
+    
+
+    try {
+      await addDoc(collection(db, "carts"), cartItem)
+    } catch (error) {
+      toast.error("An error occured")
+    }
+    dispatch(addItem({...menu, id}))
+    toast.success("Item added to cart", { toastId: "r34-xAcu9#@(*" });
+  } */
+  
 
   return (
     <div className="" key={id}>
@@ -64,7 +56,7 @@ const MenuListing = ({menu, id}) => {
         <div className="images">
           <img src={menu.imgUrls} alt="" className="shop-item-image" />
           <div className="faHeart">
-            <button className="heart-btn" onClick={addToFavourite}>
+            <button className="heart-btn" >
               <BsHeartFill />
             </button>
           </div>
@@ -81,7 +73,7 @@ const MenuListing = ({menu, id}) => {
           <p className="shop-item-desc">{menu.description}</p>
           <button
             type="button"
-            className="bg-primary hover:bg-transparent hover:border-[3px] hover:border-primary hover:text-black hover:tracking-widest text-white py-3 px-9 rounded-md text-3xl font-bold mt-4" onClick={addToCart}
+            className="bg-primary hover:bg-transparent hover:border-[3px] hover:border-primary hover:text-black hover:tracking-widest text-white py-3 px-9 rounded-md text-3xl font-bold mt-4" onClick={addToCart} 
           >
             add to cart
           </button>
