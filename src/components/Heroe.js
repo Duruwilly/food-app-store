@@ -19,8 +19,8 @@ const Heroe = () => {
             />
           </span>
         </h1>
-        <Link to="/order">
-          <HeroButton title="ORDER NOW" />
+        <Link to="/menu">
+          <HeroButton title="Explore Menu" />
         </Link>
       </div>
     </section>
