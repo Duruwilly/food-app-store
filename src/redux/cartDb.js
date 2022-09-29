@@ -17,13 +17,13 @@ import { toast } from "react-toastify";
  } */
 
 
-export const sendCartData = async (cart) => {  
+export const sendCartData = async (cartItems, totalAmount, userName, email, mobileNumber, address, state) => {  
     const addCartToDb = async () => {
       const res = await fetch(
         "https://foodweb-app-default-rtdb.firebaseio.com/cartItems.json",
         {
           method: "put",
-          body: JSON.stringify(cart),
+          body: JSON.stringify(cartItems, totalAmount, userName, email, mobileNumber, address, state),
         }
       );
       const data = await res.json();

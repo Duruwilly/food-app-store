@@ -26,15 +26,15 @@ function SavedItem({ name, description, price, imgUrls, id, userRef, timestamp }
 
   return (
     <div key={id}>
-      <div className="bg-white">
+      <div className="bg-white rounded-lg">
           <div className="flex justify-center gap-x-14 border-b border-b-gray-300">
             <div className="flex-[2] p-6">
-              <img src={imgUrls} alt={name} />
+              <img src={imgUrls} alt={name} className='rounded-lg'/>
             </div>
             <div className="flex-[4] p-6">
-              <p className="gray-700">{name}</p>
-              <p>{description}</p>
-              <span className="font-bold text-4xl mt-3">
+              <p className="gray-500 text-2xl">{name}</p>
+              <p className="text-4xl">{description}</p>
+              <span className=" text-4xl mt-3">
                 ₦{[price].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
             </div>

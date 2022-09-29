@@ -17,6 +17,7 @@ import SavedItem from "../components/SavedItem";
 import Title from "../components/Title";
 import { useSelector } from "react-redux";
 import { addItem } from "../redux/cartSlice";
+import Headers from "../components/Headers";
 
 const SavedList = () => {
   const savedItems = useSelector((state) => state.save.savedItems);
@@ -90,12 +91,10 @@ const SavedList = () => {
 
   return (
     <div className="">
-      <header className="profile text-white pt-40 pb-4 text-center text-4xl px-4">
-        <p className="font-bold">Saved Items</p>
-      </header>
+      <Headers title='saved items'/>
       {savedItems?.length !== 0 ? (
         <section className=" pb-24">
-              <main className="cart-padding">
+              <main className="">
                 <div className="box-container">
                   {savedItems?.map((saved) => (
                     <div className="group relative" key={saved.id}>

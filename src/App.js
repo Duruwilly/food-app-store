@@ -12,6 +12,8 @@ import PrivateRoute from './components/PrivateRoute';
 import SavedList from './pages/SavedList';
 import Cart from './pages/Cart';
 import Menu from './pages/Menu';
+import Checkout from './pages/Checkout';
+import Order from './pages/Order';
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/wishlists" element={<SavedList />} />
+          <Route path="/order" element={<Order />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />

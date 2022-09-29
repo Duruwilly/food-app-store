@@ -4,24 +4,24 @@ import { toast } from "react-toastify";
 import CartItem from "../components/CartItem";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import Headers from "../components/Headers";
 
-const FavouriteList = ({ cartToggle }) => {
+const Cart = ({ cartToggle }) => {
+  const [cartList, setCartList] = useState(null)
   let total = 0;
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.user.userInfo);
 
   cartItems.forEach((item) => {
-    total += item.quantity * item.totalPrice;
+    total += item.quantity * item.price;
   })
   const [loading, setLoading] = useState(true);
 
-
   return (
     <div className="">
-      <header className="profile text-white pt-40 pb-4 text-center text-4xl px-4">
-        <p className="font-bold">Cart</p>
-      </header>
+      <Headers title='cart'/>
       {cartItems?.length !== 0 ? (
-        <div className="mt- pb-24">
+        <div className="pb-24">
           <p className="uppercase text-gray-600 cart-padding">cart summary</p>
           <div className="bg-white">
             <div className="cart-padding flex justify-between text-2xl">
@@ -50,14 +50,11 @@ const FavouriteList = ({ cartToggle }) => {
               </a>
             </div>
 
-            <Link
-              to="/checkout"
+            <Link to='/checkout'
               className="bg-primary w-full text-center p-6 text-3xl text-white rounded-lg"
             >
-              <div>
                 Checkout ₦ (
                 {[total].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
-              </div>
             </Link>
           </div>
         </div>
@@ -72,4 +69,4 @@ const FavouriteList = ({ cartToggle }) => {
   );
 };
 
-export default FavouriteList;
+export default Cart;

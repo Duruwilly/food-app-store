@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import NavMobile from "./NavMobile";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const quantity = useSelector((state) => state.cart.totalQuantity);
+  let { totalCartQuantity } = useSelector((state) => state.cart);
   const [mobileNav, setMobileNav] = useState(false);
 
   const toggle = () => {
@@ -65,8 +65,8 @@ const Navbar = () => {
               <div className="text-4xl md:text-3xl p-3 cursor-pointer text-center hover:rotate-[360deg]">
                   <FaShoppingCart />
               </div>
-              {quantity === 0 ? false : true && <div className="amount-container">
-                <p className="total-amount">{quantity}</p>
+              {totalCartQuantity === 0 ? false : true && <div className="amount-container">
+                <p className="total-amount">{totalCartQuantity}</p>
               </div>}
                 </Link>
             </div>
