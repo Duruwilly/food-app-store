@@ -65,8 +65,8 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center align-center mt-">
-          <h1 className="font-medium title-font mb-2 text-gray-900">
+        <div className="flex justify-center items-center">
+          <h1 className="font-medium title-font mb-2 text-gray-900 text-4xl pt-44">
             You Have no cart items
           </h1>
         </div>

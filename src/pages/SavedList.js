@@ -108,8 +108,8 @@ const SavedList = () => {
               </main>
         </section>
       ) : (
-        <div className="flex justify-center align-center mt-24">
-          <h1 className="font-medium title-font mb-2 text-gray-900">
+        <div className="flex justify-center items-center">
+          <h1 className="font-medium title-font mb-2 text-gray-900 text-4xl pt-44">
             You Have no saved items
           </h1>
         </div>

@@ -33,7 +33,7 @@ const [loading, setLoading] = useState(true)
     fetchListings();
   }, []);
 
-  if(loading) return <Spinner description='fetching menu...' />
+  if(loading) return <Spinner description='menu...' />
   return (
     <section className="pt-44">
       <Title title="our menu" />
