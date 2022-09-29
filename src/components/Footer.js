@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="footer-box">
             <h3>Opening Hours</h3>
             <p>Monday-Thursday</p>
-            <span>9:00 AM-9:00 PM</span>
+            <span>8:00 AM-9:00 PM</span>
 
             <p>Friday-Saturday</p>
             <span>10:00 AM-9:00 PM</span>
@@ -18,30 +18,9 @@ const Footer = () => {
           </div>
 
           <div className="footer-box">
-            <h3>Contact Info</h3>
-            <a href="#">+234-9034-031-589</a>
-            <a href="#">+234-9034-031-589</a>
-            <a href="#">
-              duruprincewilluzochukwu
-              <br />
-              @gmail.com
-            </a>
-          </div>
-
-          <div className="footer-box">
-            <h3>Quick Links</h3>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Menu</a>
-            <a href="#">Review</a>
-            <a href="#">Order</a>
-            <a href="#">Contact</a>
-          </div>
-
-          <div className="footer-box">
             <h3>Follow us</h3>
             <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+            <a href="https://twitter.com/PrincewillDuruU">Twitter</a>
             <a href="#">Instagram</a>
             <a href="#">Pinterest</a>
           </div>

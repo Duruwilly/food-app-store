@@ -6,11 +6,12 @@ import { db } from "../firebase.config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import Headers from '../components/Headers';
-import { orderItem } from '../redux/orderSlice';
 import { clearCart, onCheckoutQuantity } from '../redux/cartSlice';
+import { Spinner } from '../components/Spinner';
 
 const Checkout = () => {
- const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch()
  const [formData, setFormData] = useState({
    state: "",
    address: "",
@@ -75,6 +76,13 @@ const Checkout = () => {
  const inputStyle =
    "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl focus:border-input-border";
 
+
+   setTimeout(() => {
+     setLoading(false);
+   }, 2500);
+
+   if (loading) return <Spinner description="Lfoods" />;
+
   return (
     <div>
       <Headers title="checkout" />
@@ -119,19 +127,19 @@ const Checkout = () => {
             required
             onChange={onChange}
           />
-          <div className="flex justify-between items-center text-2xl">
+          <div className="flex justify-between items-center text-3xl">
             <p>Subtotal</p>
             <p>
               ₦ ({[total].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
             </p>
           </div>
-          <div className="flex justify-between items-center border-b border-b-gray-300 text-2xl pb-4">
+          <div className="flex justify-between items-center border-b border-b-gray-300 text-3xl pb-4">
             <p>Delivery Fee</p>
             <p>
               ₦ ({`${1500}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
             </p>
           </div>
-          <div className="flex justify-between items-center text-2xl">
+          <div className="flex justify-between items-center text-3xl">
             <p>Total</p>
             <p className="text-primary">
               ₦ (
@@ -151,7 +159,6 @@ const Checkout = () => {
               });
               sendCartData({cartItems, totalAmount, userName, email, mobileNumber, address, state});
               addItemToDb();
-              dispatch(orderItem(...cartItems, totalAmount))
               dispatch(clearCart())
               dispatch(onCheckoutQuantity())
             }}

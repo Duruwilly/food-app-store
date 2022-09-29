@@ -17,10 +17,6 @@ export const Menu = [
     name: "menu",
   },
   {
-    path: "/order",
-    name: "order",
-  },
-  {
     path: "/profile",
     name: "profile",
   },
@@ -28,18 +24,21 @@ export const Menu = [
 
 export const SpecialMeal = [
   {
+    id: 1,
     src: Chicken,
     title: "This month special dish",
-    name: "chuicken fries",
+    name: "chicken fries",
     description: "you can never get enough of it",
   },
   {
+    id: 2,
     src: Special1,
     title: "This month special dish",
-    name: "chuicken biryani",
+    name: "chicken biryani",
     description: "you can never get enough of it",
   },
   {
+    id: 3,
     src: Special2,
     title: "This month special dish",
     name: "wrap burrito",

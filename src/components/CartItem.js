@@ -12,12 +12,12 @@ const CartItem = ({ name, price, quantity, img, id }) => {
       <div className="box">
         <div className="p-6">
           <div className="flex justify-center items-center">
-            <div className="flex-[2] imag">
-              <img src={img} alt={name} className="cart-item-image" />
+            <div className="flex-[2]">
+              <img src={img} alt={name} className="w-[75px] h-auto" />
             </div>
             <div className="flex-[2]">
-              <p className="text-2xl">{name}</p>
-              <span className="font-bold text-4xl mt-3">
+              <p className="text-3xl mb-3">{name}</p>
+              <span className="font-bold text-4xl">
                 ₦{[price].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
             </div>
@@ -43,7 +43,7 @@ const CartItem = ({ name, price, quantity, img, id }) => {
               </div>
             </div>
           </div>
-          <div className="mt-6 text-4xl">
+          <div className="mt-6 text-3xl">
             <span
               className="flex items-center justify-center gap-4 cursor-pointer text-primary"
               onClick={() => {dispatch(removeItem(id))}}

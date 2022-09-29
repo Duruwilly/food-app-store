@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NavMobile = ({ toggle }) => {
   return (
     <nav className="bg-white shadow-2xl w-full h-full">
-      <ul className="text-cente h-ful fle flex-co grid  items-cente justify-cnter gap-y-20 py-32 px-16">
+      <ul className="grid gap-y-20 py-32 px-16">
         {Menu.map((item, index) => {
           return (
             <li key={index} onClick={toggle}>

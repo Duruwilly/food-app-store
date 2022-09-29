@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import MenuListing from "../components/MenuListing";
 import Title from "../components/Title";
 import { Button } from "../components/Button";
+import { Spinner } from "../components/Spinner";
 
 const Menu = () => {
   const [listings, setListings] = useState(null);
-
+const [loading, setLoading] = useState(true)
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -24,12 +25,15 @@ const Menu = () => {
           });
         });
         setListings(listings);
+        setLoading(false)
       } catch (error) {
         toast.error("could'nt fetch menu");
       }
     };
     fetchListings();
   }, []);
+
+  if(loading) return <Spinner description='fetching menu...' />
   return (
     <section className="pt-44">
       <Title title="our menu" />

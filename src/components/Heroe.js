@@ -7,7 +7,7 @@ const Heroe = () => {
   return (
     <section className="bg-hero relative min-h-screen w-full bg-center bg-cover bg-no-repeat lg:bg-center text-white">
       <div className="container mx-auto text-center">
-        <h1 className="typeit">
+        <h1 className="typeit font-secondary text-5xl mt-[40%] capitalize text-center font-bold">
           where you{" "}
           <span className="text-primary">
             <TypeIt

@@ -5,9 +5,9 @@ import CartItem from "../components/CartItem";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import Headers from "../components/Headers";
+import { Spinner } from "../components/Spinner";
 
-const Cart = ({ cartToggle }) => {
-  const [cartList, setCartList] = useState(null)
+const Cart = () => {
   let total = 0;
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user.userInfo);
@@ -17,14 +17,20 @@ const Cart = ({ cartToggle }) => {
   })
   const [loading, setLoading] = useState(true);
 
+  setTimeout(() => {
+    setLoading(false)
+  }, 2500);
+
+  if(loading) return <Spinner description='loading...' />
+
   return (
     <div className="">
       <Headers title='cart'/>
       {cartItems?.length !== 0 ? (
         <div className="pb-24">
-          <p className="uppercase text-gray-600 cart-padding">cart summary</p>
+          <p className="uppercase text-gray-600 cart-padding text-2xl font-semibold">cart summary</p>
           <div className="bg-white">
-            <div className="cart-padding flex justify-between text-2xl">
+            <div className="cart-padding flex justify-between text-3xl font-bold">
               <p>Subtotal</p>
               <p>
                 ₦ ({[total].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
