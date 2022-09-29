@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { sendCartData } from "../redux/cartDb";
@@ -11,6 +12,8 @@ import { Spinner } from '../components/Spinner';
 
 const Checkout = () => {
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate()
   const dispatch = useDispatch()
  const [formData, setFormData] = useState({
    state: "",
@@ -81,7 +84,7 @@ const Checkout = () => {
      setLoading(false);
    }, 2500);
 
-   if (loading) return <Spinner description="Lfoods" />;
+   if (loading) return <Spinner description="loading..." />;
 
   return (
     <div>
@@ -161,6 +164,7 @@ const Checkout = () => {
               addItemToDb();
               dispatch(clearCart())
               dispatch(onCheckoutQuantity())
+              navigate('/')
             }}
           >
             confirm

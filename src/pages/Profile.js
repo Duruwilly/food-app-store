@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { FaPen } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { registerSucess } from "../redux/userSlice";
+import { clearCart } from "../redux/cartSlice";
 
 const Profile = () => {
   const profileName =
@@ -35,6 +36,7 @@ const Profile = () => {
 
   const onLogout = () => {
     auth.signOut();
+    dispatch(clearCart())
     navigate("/");
   };
 

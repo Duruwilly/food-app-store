@@ -166,10 +166,11 @@ header .logo {
 .row .content h3 {
   font-size: 4rem;
   padding: .5rem 0;
+  font-weight: bold;
 }
 
 .row .content p {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   padding: .5rem 0;
   line-height: 2;
 }
@@ -214,9 +215,13 @@ header .logo {
 }
 
 .slide .image img {
-  height: 30rem;
-  width: 30rem;
+  height: 50rem;
+  width: 50rem;
   border-radius: 50%;
+}
+
+.image img {
+  width: 100%;
 }
 
  .slide .content {
@@ -229,19 +234,20 @@ header .logo {
 
  .slide .content span {
   color: var(--color-primary);
-  font-size: 1.3rem;
+  font-size: 2.5rem;
   font-family: var(--title-font);
 }
 
  .slide .content h3 {
-  font-size: 3rem;
+  font-size: 7rem;
+  font-weight: bold;
 }
 
  .slide .content p {
   color: var(--color-light);
-  font-size: 1rem;
-  padding: .4rem 0;
-  line-height: 1;
+  font-size: 2.2rem;
+  padding: .5rem 0;
+  line-height: 1.5;
 }
 
 .slider .swiper-pagination-bullet {
@@ -325,6 +331,7 @@ header .logo {
 
 .box .content .shop-item-title {
   font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .box .content p {

@@ -47,19 +47,6 @@ const MenuListing = ({menu, id}) => {
     });
   };
 
-  /* const addCart = async () => {
-    
-
-    try {
-      await addDoc(collection(db, "carts"), cartItem)
-    } catch (error) {
-      toast.error("An error occured")
-    }
-    dispatch(addItem({...menu, id}))
-    toast.success("Item added to cart", { toastId: "r34-xAcu9#@(*" });
-  } */
-  
-
   return (
     <div className="" key={id}>
       <div className="box">
