@@ -113,9 +113,6 @@ const Profile = () => {
           <p className="pt-3 pb-1 px-4 text-3xl md:text-2xl">My Lfoods Account</p>
           <div className="px-4 py-7 mt-2 space-y-12 bg-white shadow text-3xl md:text-2xl">
             <p>
-              <Link to="/orders">Orders</Link>
-            </p>
-            <p>
               <Link to="/wishlists">Favourites</Link>
             </p>
           </div>

@@ -116,7 +116,7 @@ const Login = () => {
               </Link>
             </p>
             <p className="text-center text-2xl">
-              By continuing you agree to the Policy and Rules of Willtta
+              By continuing you agree to the Policy and Rules of Lfoods
             </p>
           </div>
         </div>
