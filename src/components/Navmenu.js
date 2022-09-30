@@ -1,6 +1,3 @@
-import Chicken from "../assets/images/chickenfries.jpg";
-import Special1 from "../assets/images/specialdish2.jpg";
-import Special2 from "../assets/images/specialdish3.jpg";
 import customer1 from '../assets/images/customer1.jpg'
 import customer2 from '../assets/images/customer2.jpg'
 import customer3 from '../assets/images/customer3.jpg'
@@ -22,54 +19,19 @@ export const Menu = [
   },
 ];
 
-export const SpecialMeal = [
-  {
-    id: 1,
-    src: Chicken,
-    title: "This month special dish",
-    name: "chicken fries",
-    description: "you can never get enough of it",
-  },
-  {
-    id: 2,
-    src: Special1,
-    title: "This month special dish",
-    name: "chicken biryani",
-    description: "you can never get enough of it",
-  },
-  {
-    id: 3,
-    src: Special2,
-    title: "This month special dish",
-    name: "wrap burrito",
-    description: "you can never get enough of it",
-  },
-];
-
-
-export const MenuList =[
- {
-  id: 1,
-  src: Special1,
-  price: '$104.20',
-  title: 'wrap burrito',
-  description: 'enjoy the beat meal'
- },
-]
-
 
 export const Reviews = [
  {
   id: 1,
-  name: 'prince will',
+  name: 'miracle smith',
   src: customer1,
-  note: 'After my first experience with them, all i can say is that they are at the top of their game'
+  note: 'Their customer satisfaction is top-notch'
  },
  {
   id: 2,
   name: 'ruth b',
   src: customer2,
-  note: 'After my first experience with them, all i can say is that they are at the top of their game'
+  note: 'All i can say is that they are at the beginning of their game'
  },
  {
   id: 3,
@@ -79,13 +41,13 @@ export const Reviews = [
  },
  {
   id: 4,
-  name: 'miracle smith',
+  name: 'prince will',
   src: customer4,
-  note: 'After my first experience with them, all i can say is that they are at the top of their game'
+  note: 'I had my first date meal ordered from lilsen and i will say, they at their very best'
  },
  {
   id: 5,
-  name: 'miracle smith',
+  name: 'king bright',
   src: customer5,
   note: 'After my first experience with them, all i can say is that they are at the top of their game'
  },

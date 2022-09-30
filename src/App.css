@@ -243,7 +243,7 @@ header .logo {
   font-weight: bold;
 }
 
- .slide .content p {
+ .slide .content .desc  {
   color: var(--color-light);
   font-size: 2.2rem;
   padding: .5rem 0;
