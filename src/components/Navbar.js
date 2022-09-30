@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/logo.PNG";
 import { CgMenuRight, CgClose } from "react-icons/cg";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
@@ -31,9 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center w-full">
           <Link to="/" className="">
-            <span className="logo">
-              L<span className="text-primary">foods</span>
-            </span>
+            <img src={Logo} alt='logo' className='h-16 w-' />
           </Link>
 
           {/* nav */}
