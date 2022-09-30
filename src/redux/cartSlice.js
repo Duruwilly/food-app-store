@@ -4,7 +4,7 @@ const initialState = {
  cartItems: [],
  totalAmount: 0,
  total: 0,
- totalCartQuantity: 0,
+ totalItemQuantity: 0,
  isLoading: true,
  changed: false,
 }
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
           ...newItem,
           quantity: 1,
         });
-        state.totalCartQuantity++;
+        state.totalItemQuantity++;
       }
     },
     removeItem(state, action) {
@@ -39,7 +39,7 @@ const cartSlice = createSlice({
      const cartItem = state.cartItems.find((item) => item.id === itemId);
       if(cartItem) {
        state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-       state.totalCartQuantity--
+       state.totalItemQuantity--
       }
     },
     incrementItem(state, { payload }) {
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
       state.cartItems = []
     },
     onCheckoutQuantity(state) {
-      state.totalCartQuantity = 0
+      state.totalItemQuantity = 0
     }
   },
 });
