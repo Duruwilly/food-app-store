@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Button, Spinner } from 'flowbite-react'
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { InputButton } from "../components/Button";
 
@@ -10,6 +11,7 @@ const Login = () => {
   const inputStyle =
     "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl focus:border-input-border";
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,7 +33,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       const auth = getAuth();
 
@@ -42,11 +44,18 @@ const Login = () => {
       );
 
       if (userCredential.user) {
+        setLoading(false)
         navigate("/");
       }
     } catch (error) {
-      toast.error("invalid User");
+      console.log(error.code)
+      if (error.code === "auth/network-request-failed") {
+        toast.error("Network error")
+      } else {
+        toast.error("Invalid Email or password")
+      }
     }
+    setLoading(false)
   };
 
   return (
@@ -102,8 +111,17 @@ const Login = () => {
                   Forgot your password?
                 </p>
               </Link>
-
-              <InputButton text="Sign in" />
+              <div>
+                {loading ? (
+                  <div className="group relative w-full flex justify-center border border-transparent text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
+                    <Button>
+                      <Spinner />
+                    </Button>
+                  </div>
+                ) : (
+                  <InputButton text="Sign in" />
+                )}
+              </div>
             </form>
 
             <p className="text-center text-3xl">

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import {toast} from 'react-toastify'
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Button, Spinner } from 'flowbite-react'
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebase.config";
 import {
@@ -8,8 +9,8 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import {setDoc, doc, serverTimestamp} from 'firebase/firestore'
-import { InputButton } from '../components/Button';
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { InputButton } from "../components/Button";
 import { useDispatch } from "react-redux";
 import { registerSucess } from "../redux/userSlice";
 
@@ -17,9 +18,8 @@ const Register = () => {
   const inputStyle =
     "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl focus:border-input-border";
 
-    const dispatch = useDispatch();
-
-    
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ const Register = () => {
 
   const passwordToggle = () => {
     setShowPassword((prevState) => !prevState);
-  }
+  };
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -46,6 +46,7 @@ const Register = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    setLoading(true);
     dispatch(registerSucess({ userName, email, mobileNumber }));
     try {
       // getting this value from getAuth
@@ -72,12 +73,24 @@ const Register = () => {
 
       await setDoc(doc(db, "users", user.uid), formDataCopy);
       toast.success("Account successfully registered");
+      setLoading(false);
       navigate("/");
     } catch (error) {
-      toast.error("something went wrong with registeration");
+      if (error.code === "auth/email-already-in-use") {
+        toast.warning("Email has already been registered");
+        setLoading(false);
+        return;
+      } else if (error.code === "auth/weak-password") {
+        toast.warning("Use a strong password");
+        setLoading(false);
+        return;
+      } else {
+        toast.error("something went wrong with registeration. Try again");
+      }
+      setLoading(false);
     }
   };
-  
+
   return (
     <section>
       <main className="flex items-center justify-center">
@@ -143,7 +156,17 @@ const Register = () => {
                 className={inputStyle}
                 onChange={onChange}
               />
-              <InputButton text="Sign up" />
+              <div>
+                {loading ? (
+                  <div className="group relative w-full flex justify-center border border-transparent text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
+                    <Button>
+                      <Spinner />
+                    </Button>
+                  </div>
+                ) : (
+                  <InputButton text="Sign up" />
+                )}
+              </div>
             </form>
 
             <p className="text-center text-3xl">
@@ -160,6 +183,6 @@ const Register = () => {
       </main>
     </section>
   );
-}
+};
 
-export default Register
+export default Register;

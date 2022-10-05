@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center w-full">
           <Link to="/" className="">
-            <img src={Logo} alt='logo' className='h-16' />
+            <img src={Logo} alt="logo" className='h-16' />
           </Link>
 
           {/* nav */}
