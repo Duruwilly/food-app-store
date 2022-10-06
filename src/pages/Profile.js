@@ -10,10 +10,10 @@ import { registerSucess } from "../redux/userSlice";
 import { clearCart, onCheckoutQuantity } from "../redux/cartSlice";
 
 const Profile = () => {
-  const profileName =
-    "appearance-none rounded-none relative block w-full px-3 py-2 text-3xl md:text-2xl bg-transparent focus:outline-none";
-  const profileNameActive =
-    "appearance-none rounded-none relative block w-full px-3 py-2 text-3xl md:text-2xl border-gray-500 border-b bg-transparent focus:outline-none";
+  const profileNameDetails =
+    "appearance-none rounded-none relative block w-full px-3 py-2 text-3xl md:text-2xl bg-transparent focus:outline-none border-none";
+  const profileActive =
+    "appearance-none rounded-none relative block w-full px-3 py-2 text-3xl md:text-2xl border-none bg-transparent focus:outline-none";
 
   const auth = getAuth();
 
@@ -124,7 +124,7 @@ const Profile = () => {
                   <input
                     type="text"
                     id="userName"
-                    className={!changeDetails ? profileName : profileNameActive}
+                    className={!changeDetails ? profileNameDetails : profileActive}
                     disabled={!changeDetails}
                     value={userName}
                     onChange={onChange}
@@ -139,7 +139,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="email"
-                  className={!changeDetails ? profileName : profileNameActive}
+                  className={ profileNameDetails }
                   disabled
                   readOnly
                   value={email}
@@ -148,7 +148,7 @@ const Profile = () => {
                   <input
                     type="tel"
                     id="mobileNumber"
-                    className={!changeDetails ? profileName : profileNameActive}
+                    className={!changeDetails ? profileNameDetails : profileActive}
                     disabled={!changeDetails}
                     autoFocus={changeDetails}
                     value={mobileNumber}

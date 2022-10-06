@@ -16,7 +16,7 @@ import { registerSucess } from "../redux/userSlice";
 
 const Register = () => {
   const inputStyle =
-    "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl focus:border-input-border";
+    "appearance-none rounded-lg relative block w-full px-3 py-4 border border-gray-300 focus:outline-none placeholder:text-2xl text-3xl md:text-2xl";
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -158,10 +158,8 @@ const Register = () => {
               />
               <div>
                 {loading ? (
-                  <div className="group relative w-full flex justify-center border border-transparent text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
-                    <Button>
+                  <div className="group relative w-full flex justify-center border border-transparent py-3 text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
                       <Spinner />
-                    </Button>
                   </div>
                 ) : (
                   <InputButton text="Sign up" />

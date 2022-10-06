@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <header
       className="bg-nav lg:py-6
-      fixed left-0 top-0 right-0 py-8 z-10 w-full transition-all duration-200 html"
+      fixed left-0 top-0 right-0 py-8 z-10 w-full transition-all duration-200"
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center w-full">

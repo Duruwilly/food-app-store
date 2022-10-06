@@ -113,10 +113,8 @@ const Login = () => {
               </Link>
               <div>
                 {loading ? (
-                  <div className="group relative w-full flex justify-center border border-transparent text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
-                    <Button>
+                  <div className="group relative w-full flex justify-center border border-transparent py-3 text-3xl font-medium rounded-md text-white bg-primary focus:outline-none">
                       <Spinner />
-                    </Button>
                   </div>
                 ) : (
                   <InputButton text="Sign in" />
