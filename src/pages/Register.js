@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Button, Spinner } from 'flowbite-react'
+import { Spinner } from 'flowbite-react'
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebase.config";
 import {
@@ -101,6 +101,7 @@ const Register = () => {
             </h2>
             <form className="space-y-4" onSubmit={submitForm}>
               <input
+              required
                 type="name"
                 placeholder="Full Name"
                 id="userName"
@@ -110,6 +111,7 @@ const Register = () => {
                 onChange={onChange}
               />
               <input
+              required
                 type="email"
                 placeholder="Email address"
                 autoComplete="email"
@@ -121,6 +123,7 @@ const Register = () => {
               />
               <div className="relative">
                 <input
+                required
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   autoComplete="current-password"
@@ -148,6 +151,10 @@ const Register = () => {
                 )}
               </div>
               <input
+              required
+              maxLength='11'
+              minLength='11'
+              size='13'
                 type="tel"
                 placeholder="Mobile Number"
                 id="mobileNumber"

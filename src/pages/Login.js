@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Button, Spinner } from 'flowbite-react'
+import { Spinner } from 'flowbite-react'
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { InputButton } from "../components/Button";
@@ -69,6 +69,7 @@ const Login = () => {
             <form className="space-y-4" onSubmit={onSubmit}>
               <input type="hidden" name="remember" defaultValue="true" />
               <input
+              required
                 type="email"
                 id="email"
                 name="email"
@@ -80,6 +81,7 @@ const Login = () => {
               />
               <div className="relative">
                 <input
+                required
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
